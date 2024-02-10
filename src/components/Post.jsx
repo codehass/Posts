@@ -26,7 +26,7 @@ function Post({ postProp, onDelete }) {
 	};
 
 	return (
-		<div className="m-2 border  relative">
+		<div className="m-2 border p-3 relative rounded-lg">
 			<Link href={`/posts/${id}`} className="w-[95%]">
 				<p>{userId} </p>
 				<p>{id} </p>

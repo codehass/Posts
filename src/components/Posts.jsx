@@ -32,13 +32,16 @@ function Posts() {
 	};
 
 	return (
-		<div>
-			<input
-				type="text"
-				placeholder="Search posts..."
-				value={searchTerm}
-				onChange={(e) => setSearchTerm(e.target.value)}
-			/>
+		<div className="w-full md:w-[80%] m-auto my-4">
+			<div className="w-full text-center">
+				<input
+					type="text"
+					placeholder="Search posts..."
+					value={searchTerm}
+					onChange={(e) => setSearchTerm(e.target.value)}
+					className="p-1 text-center"
+				/>
+			</div>
 
 			{data
 				.filter((post) =>
