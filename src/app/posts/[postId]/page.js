@@ -1,7 +1,8 @@
 import React from "react";
+import PostPage from "@/components/PostPage";
 
 function PostId() {
-	return <div>This is a single post </div>;
+	return <PostPage />;
 }
 
 export default PostId;
