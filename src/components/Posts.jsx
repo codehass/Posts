@@ -8,6 +8,7 @@ const ITEMS_PER_PAGE = 10;
 function Posts() {
 	const [data, setData] = useState([]);
 	const [currentPage, setCurrentPage] = useState(1);
+	const [searchTerm, setSearchTerm] = useState("");
 
 	useEffect(() => {
 		const fetchData = async () => {
@@ -20,7 +21,7 @@ function Posts() {
 		};
 
 		fetchData();
-	}, [currentPage]);
+	}, [currentPage, searchTerm]);
 
 	const handlePageChange = (newPage) => {
 		setCurrentPage(newPage);
@@ -32,9 +33,20 @@ function Posts() {
 
 	return (
 		<div>
-			{data.map((post) => (
-				<Post key={post.id} postProp={post} onDelete={handleDelete} />
-			))}
+			<input
+				type="text"
+				placeholder="Search posts..."
+				value={searchTerm}
+				onChange={(e) => setSearchTerm(e.target.value)}
+			/>
+
+			{data
+				.filter((post) =>
+					post.title.toLowerCase().includes(searchTerm.toLowerCase())
+				)
+				.map((post) => (
+					<Post key={post.id} postProp={post} onDelete={handleDelete} />
+				))}
 
 			{/* Pagination controls */}
 			<div>
