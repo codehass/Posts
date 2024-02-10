@@ -26,10 +26,14 @@ function Posts() {
 		setCurrentPage(newPage);
 	};
 
+	const handleDelete = (postId) => {
+		setData((prevPosts) => prevPosts.filter((post) => post.id !== postId));
+	};
+
 	return (
 		<div>
 			{data.map((post) => (
-				<Post key={post.id} postProp={post} />
+				<Post key={post.id} postProp={post} onDelete={handleDelete} />
 			))}
 
 			{/* Pagination controls */}
