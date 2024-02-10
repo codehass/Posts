@@ -49,19 +49,19 @@ function Posts() {
 				))}
 
 			{/* Pagination controls */}
-			<div>
+			<div className="w-full text-center">
 				<button
 					disabled={currentPage === 1}
 					onClick={() => handlePageChange(currentPage - 1)}
-					className="text-red-500 font-bold"
+					className="font-medium px-2 py-1 rounded-md border hover:cursor-pointer"
 				>
 					Previous Page
 				</button>
-				<span> Page {currentPage} </span>
+				<span className="font-bold"> {currentPage} </span>
 				<button
 					disabled={data.length < ITEMS_PER_PAGE}
 					onClick={() => handlePageChange(currentPage + 1)}
-					className="text-red-500 font-bold"
+					className="font-medium px-2 py-1 rounded-md border hover:cursor-pointer"
 				>
 					Next Page
 				</button>

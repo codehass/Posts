@@ -30,13 +30,17 @@ function PostPage() {
 	}, [params.postId]);
 
 	return (
-		<div>
-			<p>{post.title}</p>
-			<p>{post.body}</p>
-			<h2>comments</h2>
-			{comments.map((el) => (
-				<Comment key={el.id} comm={el} />
-			))}
+		<div className="w-full md:w-[80%] m-auto mt-4">
+			<div className="border p-4 rounded-lg">
+				<p className="font-bold text-blue-700">{post.title} </p>
+				<p className="text-gray-500">{post.body} </p>
+			</div>
+			<h2 className="font-bold pl-2">comments:</h2>
+			<div className="pl-4">
+				{comments.map((el) => (
+					<Comment key={el.id} comm={el} />
+				))}
+			</div>
 		</div>
 	);
 }

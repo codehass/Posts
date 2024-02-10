@@ -4,9 +4,9 @@ function Comment({ comm }) {
 	const { name, body } = comm;
 	return (
 		<div>
-			<div>
-				<h3>{name}</h3>
-				<p>{body}</p>
+			<div className=" ">
+				<h3 className="text-gray-950 font-semibold">{name}:</h3>
+				<p className="pl-2">{body}</p>
 			</div>
 		</div>
 	);

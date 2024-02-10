@@ -26,19 +26,24 @@ function Post({ postProp, onDelete }) {
 	};
 
 	return (
-		<div className="m-2 border flex justify-center items-center">
+		<div className="m-2 border  relative">
 			<Link href={`/posts/${id}`} className="w-[95%]">
 				<p>{userId} </p>
 				<p>{id} </p>
-				<p>{title} </p>
-				<p>{body} </p>
-				<p>{wordCount} </p>
+				<p className="font-bold text-blue-700">{title} </p>
+				<p className="text-gray-500">{body} </p>
+				<p className="font-medium">
+					{" "}
+					<span>Words counts:</span> {wordCount}{" "}
+				</p>
 			</Link>
-			<div className="w-[5%]">
-				<button className="text-red-500" onClick={deleteHandler}>
-					Delete
-				</button>
-			</div>
+
+			<button
+				className="bg-red-500 absolute top-1 right-1 text-white p-1 rounded-md hover:cursor-pointer"
+				onClick={deleteHandler}
+			>
+				Delete
+			</button>
 		</div>
 	);
 }
