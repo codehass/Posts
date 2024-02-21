@@ -9,11 +9,18 @@ function Posts() {
 	const [data, setData] = useState([]);
 	const [currentPage, setCurrentPage] = useState(1);
 	const [searchTerm, setSearchTerm] = useState("");
+	const [searchPosts, setSearchPosts] = useState([]);
 
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
 				const result = await getData(currentPage);
+				const search = await fetch(
+					`https://jsonplaceholder.typicode.com/posts?q=${searchTerm.toLowerCase()}`
+				);
+				const json = await search.json();
+
+				setSearchPosts(json);
 				setData(result);
 			} catch (error) {
 				console.error("Error fetching data:", error.message);
@@ -21,7 +28,7 @@ function Posts() {
 		};
 
 		fetchData();
-	}, [currentPage, searchTerm]);
+	}, [currentPage, searchPosts, searchTerm]);
 
 	const handlePageChange = (newPage) => {
 		setCurrentPage(newPage);
@@ -43,13 +50,13 @@ function Posts() {
 				/>
 			</div>
 
-			{data
-				.filter((post) =>
-					post.title.toLowerCase().includes(searchTerm.toLowerCase())
-				)
-				.map((post) => (
-					<Post key={post.id} postProp={post} onDelete={handleDelete} />
-				))}
+			{searchTerm === ""
+				? data.map((post) => (
+						<Post key={post.id} postProp={post} onDelete={handleDelete} />
+				  ))
+				: searchPosts.map((post) => (
+						<Post key={post.id} postProp={post} onDelete={handleDelete} />
+				  ))}
 
 			{/* Pagination controls */}
 			<div className="w-full text-center">
